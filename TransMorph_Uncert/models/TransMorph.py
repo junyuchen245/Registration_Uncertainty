@@ -1043,7 +1043,7 @@ class TransMorphTVF(nn.Module):
             x = self.up3s[t](xx, f_out)
             flow = self.reg_heads[t](x)
             flows.append(flow)
-            flow_new = flow_previous + self.spatial_trans(flow, flow)
+            flow_new = flow_previous + self.spatial_trans(flow, flow_previous)
             def_x = self.spatial_trans(mov, flow_new)
             flow_previous = flow_new
         flow = flow_new
