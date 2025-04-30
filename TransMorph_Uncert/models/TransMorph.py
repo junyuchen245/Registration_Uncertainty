@@ -1035,7 +1035,7 @@ class TransMorphTVF(nn.Module):
         x = self.up1(x, f2)
         xx = self.up2(x, f3)
         def_x = mov.clone()
-        flow_previous = 0
+        flow_previous = torch.zeros((mov.shape[0], 3, self.img_size[0], self.img_size[1], self.img_size[2])).to(mov.device)
         flows = []
         # flow integration
         for t in range(self.time_steps):
